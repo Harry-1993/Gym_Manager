@@ -1,0 +1,64 @@
+package com.gym.demo.repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.gym.demo.model.Customer;
+
+@Repository
+public class CustomerRepoImpl{
+
+
+	/*@Autowired
+	private HibernateTemplate hibernateTemplate;*/
+	
+	@Autowired
+	private EntityManager entity;
+	
+	protected Session getSession(EntityManager em)
+	{
+		return em.unwrap(Session.class);
+	}//end getSession
+	
+
+	public void addCustomer(Customer cust)
+	{
+		Session session=getSession(entity);
+		Transaction t=session.beginTransaction();
+		session.save(cust);
+		t.commit();
+		session.close();
+		
+	}//end addCustomer
+	
+	public Customer getCustomerById(String custId)
+	{
+		Session session=getSession(entity);
+		Transaction t=session.beginTransaction();
+		Customer cust=session.get(Customer.class, custId);
+		t.commit();
+		session.close();
+		return cust;
+	}//end getCustomerById
+	
+	public List<Customer> getAllCustomers()
+	{
+		String queryString="from Customer";
+		Session session=getSession(entity);
+		Transaction t=session.beginTransaction();
+		List<Customer> custList=session.createQuery(queryString).list();
+		t.commit();
+		session.close();
+		return custList;
+	}//end getAllCustomers
+}

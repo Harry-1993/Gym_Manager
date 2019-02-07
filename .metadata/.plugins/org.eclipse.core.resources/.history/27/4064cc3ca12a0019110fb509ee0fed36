@@ -1,0 +1,5 @@
+package com.gym.demo.exception;
+
+public class CustomerNotFound extends Exception{
+
+}

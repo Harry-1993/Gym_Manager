@@ -1,0 +1,11 @@
+package com.gym.demo.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.gym.demo.model.Customer;
+
+public class CustomerRepoImpl{
+
+}

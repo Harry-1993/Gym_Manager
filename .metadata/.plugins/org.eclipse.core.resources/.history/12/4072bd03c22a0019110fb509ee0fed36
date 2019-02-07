@@ -1,0 +1,29 @@
+package com.gym.demo;
+
+import org.hibernate.Hibernate;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@SpringBootApplication
+@EnableSwagger2
+public class GymManagerApplication {
+	
+	public static void main(String[] args) {
+		SpringApplication.run(GymManagerApplication.class, args);
+		System.out.println("Customer Application started...");
+	}
+	
+	@Bean
+	public HibernateTemplate hibernateTemplate(SessionFactory factory)
+	{
+		return new HibernateTemplate(factory);
+	}//end hibernateTemplate
+
+}
+

@@ -1,0 +1,43 @@
+package com.gym.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.gym.demo.exception.CustomerNotFound;
+import com.gym.demo.model.Customer;
+import com.gym.demo.service.CustomerService;
+
+@RestController
+@RequestMapping(value="/customer")
+public class CustomerController {
+
+	@Autowired
+	private CustomerService custService;
+	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
+	public ResponseEntity addCustomer(@ModelAttribute Customer cust)
+	{
+		custService.addCustomer(cust);
+		return new ResponseEntity(cust,HttpStatus.OK);
+	}//end addCustomer
+	
+	@RequestMapping(value="/getCustomer/{id}",method=RequestMethod.GET)
+	public ResponseEntity getCustomerById(@PathVariable String id) throws CustomerNotFound
+	{
+		Customer cust=custService.getCustomerById(id);
+		if(null==cust)
+		{
+			throw new CustomerNotFound();
+		}
+		else
+		{
+			return new ResponseEntity(custService.getCustomerById(id),HttpStatus.OK);	
+		}
+	}//end getCustomerById
+}//end CustomerController class

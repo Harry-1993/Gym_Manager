@@ -1,0 +1,20 @@
+package com.gym.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gym.demo.model.Customer;
+import com.gym.demo.repository.CustomerRepoImpl;
+
+@Service
+public class CustomerService {
+	
+	@Autowired
+	private CustomerRepoImpl custRepo;
+	
+	public void addCustomer(Customer cust)
+	{
+		custRepo.addCustomer(cust);
+	}//end addCustomer
+
+}

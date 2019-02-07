@@ -1,0 +1,12 @@
+package com.gym.demo.service;
+
+import com.gym.demo.model.Customer;
+
+public class CustomerService {
+	
+	public void addCustomer(Customer cust)
+	{
+		
+	}
+
+}

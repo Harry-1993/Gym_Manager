@@ -1,0 +1,10 @@
+package com.gym.demo.repository;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public interface CustomerRepo{
+
+	@Autowired
+	private SessionFactory factory;
+}

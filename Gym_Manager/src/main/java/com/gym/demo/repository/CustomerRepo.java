@@ -1,0 +1,6 @@
+package com.gym.demo.repository;
+
+public interface CustomerRepo{
+
+	
+}

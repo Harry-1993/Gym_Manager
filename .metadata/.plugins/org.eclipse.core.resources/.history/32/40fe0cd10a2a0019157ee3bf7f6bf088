@@ -1,0 +1,15 @@
+package com.gym.demo.service;
+
+import org.springframework.stereotype.Service;
+
+import com.gym.demo.model.Customer;
+
+@Service
+public class CustomerService {
+	
+	public void addCustomer(Customer cust)
+	{
+		
+	}
+
+}

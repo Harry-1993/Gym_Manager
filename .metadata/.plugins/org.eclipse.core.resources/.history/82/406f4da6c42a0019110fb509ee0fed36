@@ -1,0 +1,55 @@
+package com.gym.demo.repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.gym.demo.model.Customer;
+
+@Repository
+public class CustomerRepoImpl{
+
+
+	/*@Autowired
+	private HibernateTemplate hibernateTemplate;*/
+	
+	@Autowired
+	private EntityManager entity;
+	
+	protected Session getSession(EntityManager em)
+	{
+		return em.unwrap(Session.class);
+	}//end getSession
+	
+	@Bean
+	public HibernateTemplate hibernateTemplate(SessionFactory factory)
+	{
+		return new HibernateTemplate(factory);
+	}//end hibernateTemplate
+
+	public void addCustomer(Customer cust)
+	{
+		hibernateTemplate.save(cust);	
+	}//end addCustomer
+	
+	public Customer getCustomerById(String custId)
+	{
+		Customer cust=hibernateTemplate.get(Customer.class, custId);		
+		return cust;
+	}//end getCustomerById
+	
+	public List<Customer> getAllCustomers()
+	{
+		String queryString="from Customer";
+		List<Customer> custList=(List<Customer>) hibernateTemplate.find(queryString);
+		
+		return custList;
+	}//end getAllCustomers
+}

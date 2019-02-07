@@ -1,5 +1,86 @@
 package com.gym.demo.model;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Customer_Gym")
 public class Customer {
 
-}
+	@Id
+	private String custId;
+	private String custName;
+	private String custDob;
+	private String custEmail;
+	private String custPhoneNumber;
+	private double weight;
+	private double height;
+	
+	
+	public Customer() {
+		
+	}//end def constructor
+
+	public String getCustId() {
+		return custId;
+	}
+
+	public void setCustId(String custId) {
+		this.custId = custId;
+	}
+
+	public String getCustName() {
+		return custName;
+	}
+
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+
+	public String getCustDob() {
+		return custDob;
+	}
+
+	public void setCustDob(String custDob) {
+		this.custDob = custDob;
+	}
+
+	public String getCustEmail() {
+		return custEmail;
+	}
+
+	public void setCustEmail(String custEmail) {
+		this.custEmail = custEmail;
+	}
+
+	public String getCustPhoneNumber() {
+		return custPhoneNumber;
+	}
+
+	public void setCustPhoneNumber(String custPhoneNumber) {
+		this.custPhoneNumber = custPhoneNumber;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	
+}//end class 

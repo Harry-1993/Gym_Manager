@@ -1,0 +1,47 @@
+package com.gym.demo.repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.gym.demo.model.Customer;
+
+@Repository
+public class CustomerRepoImpl{
+
+	@Autowired
+	EntityManager entity;
+	
+	@Autowired
+	private SessionFactory factory;
+	
+	public void addCustomer(Customer cust)
+	{
+		Session session=factory.openSession();
+		session.save(cust);
+		session.close();
+	}//end addCustomer
+	
+	public Customer getCustomerById(String custId)
+	{
+		Session session=factory.openSession();
+		Customer cust=session.get(Customer.class, custId);
+		session.close();
+		
+		return cust;
+	}//end getCustomerById
+	
+	public List<Customer> getAllCustomers()
+	{
+		Session session=factory.openSession();
+		String queryString="from Customer";
+		List<Customer> custList=session.createQuery(queryString).list();
+		
+		return custList;
+	}//end getAllCustomers
+}

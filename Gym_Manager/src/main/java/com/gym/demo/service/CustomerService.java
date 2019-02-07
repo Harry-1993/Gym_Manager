@@ -1,0 +1,57 @@
+package com.gym.demo.service;
+
+/*
+ * @Author: Deepak Sharma
+ * CustomerService interacting with CustomerRepositoryImpl class
+ */
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.gym.demo.model.Customer;
+import com.gym.demo.repository.CustomerRepoImpl;
+
+@Service
+public class CustomerService {
+	
+	@Autowired
+	private CustomerRepoImpl custRepo;
+	
+	/*
+	 * @Author: Deepak Sharma
+	 * @Param: {cust: Customer Object}
+	 * save customer object into database
+	 */
+	public void addCustomer(Customer cust)
+	{
+		custRepo.addCustomer(cust);
+	}//end addCustomer
+	
+	
+	
+	/*
+	 * @Author: Deepak Sharma
+	 * @Param: {custId: String : Customer Id}
+	 * retrive record of only one customer from database matching with custId
+	 */
+	public Customer getCustomerById(String custId)
+	{
+		return custRepo.getCustomerById(custId);
+	}//end getCustomerById
+	
+	
+	
+	/*
+	 * @Author: Deepak Sharma
+	 * retrive all records from Database
+	 */
+	public List<Customer> getAllCustomers()
+	{
+		return custRepo.getAllCustomers();
+	}//end getAllCustomers
+	
+	
+
+}//end servie class
